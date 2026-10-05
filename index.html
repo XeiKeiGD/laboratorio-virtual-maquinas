@@ -1,0 +1,212 @@
+<div class="app">
+
+  <header>
+    <h1>🧪 Laboratorio Virtual</h1>
+    <p>Herramientas digitales para Máquinas-Herramientas</p>
+  </header>
+
+  <nav>
+    <button onclick="mostrarSeccion('inicio', this)" class="activo">🏠 Inicio</button>
+    <button onclick="mostrarSeccion('conversiones', this)">📐 Conversiones</button>
+    <button onclick="mostrarSeccion('mecanizado', this)">⚙️ Mecanizado</button>
+    <button onclick="mostrarSeccion('geometria', this)">📏 Geometría</button>
+    <button onclick="mostrarSeccion('materiales', this)">🔩 Materiales</button>
+    <button onclick="mostrarSeccion('herramientas', this)">🛠️ Herramientas</button>
+  </nav>
+
+  <main>
+
+    <!-- 1. INICIO -->
+    <section id="inicio" class="seccion activa">
+      <h2>Bienvenido al Laboratorio Virtual</h2>
+      <p>
+        Este sitio reúne diferentes herramientas, calculadoras y tablas de consulta
+        técnica diseñadas para estudiantes y profesionales de Máquinas-Herramientas.
+      </p>
+
+      <div class="tarjetas">
+        <div class="tarjeta" onclick="mostrarSeccion('conversiones', document.querySelectorAll('nav button')[1])" style="cursor: pointer;">
+          <span>📐</span>
+          <h3>Conversiones</h3>
+          <p>Convierte pulgadas a milímetros y viceversa.</p>
+        </div>
+
+        <div class="tarjeta" onclick="mostrarSeccion('mecanizado', document.querySelectorAll('nav button')[2])" style="cursor: pointer;">
+          <span>⚙️</span>
+          <h3>Mecanizado</h3>
+          <p>Calcula parámetros de corte como las RPM.</p>
+        </div>
+
+        <div class="tarjeta" onclick="mostrarSeccion('geometria', document.querySelectorAll('nav button')[3])" style="cursor: pointer;">
+          <span>📏</span>
+          <h3>Geometría</h3>
+          <p>Cálculos dimensionales y pre-taladros para roscas.</p>
+        </div>
+
+        <div class="tarjeta" onclick="mostrarSeccion('materiales', document.querySelectorAll('nav button')[4])" style="cursor: pointer;">
+          <span>🔩</span>
+          <h3>Materiales</h3>
+          <p>Guía de velocidades de corte por material.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 2. CONVERSIONES -->
+    <section id="conversiones" class="seccion">
+      <h2>📐 Conversor de Unidades</h2>
+      <div class="calculadora">
+        <label for="pulgadas">Pulgadas (in) a Milímetros (mm)</label>
+        <input type="number" id="pulgadas" placeholder="Ej. 1.5 o 3/4 (ingresa decimal)" min="0" step="any" oninput="convertirPulgadas()">
+        <div id="resultadoPulgadas" class="resultado">
+          Introduce un valor en pulgadas.
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 3. MECANIZADO -->
+    <section id="mecanizado" class="seccion">
+      <h2>⚙️ Calculadora de RPM</h2>
+      <div class="calculadora">
+        <label for="diametro">Diámetro de la pieza o fresa (mm)</label>
+        <input type="number" id="diametro" placeholder="Ej. 40" min="0" step="any">
+
+        <label for="velocidadCorte">Velocidad de corte (m/min)</label>
+        <input type="number" id="velocidadCorte" placeholder="Ej. 25" min="0" step="any">
+
+        <button onclick="calcularRPM()">Calcular RPM</button>
+
+        <div id="resultadoRPM" class="resultado">
+          Introduce los datos para comenzar.
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 4. GEOMETRÍA -->
+    <section id="geometria" class="seccion">
+      <h2>📏 Geometría y Pre-taladros para Rosca</h2>
+      <p style="color: #9ca3af; text-align: center;">Calcula el diámetro de broca recomendado para roscas métricas ISO (M).</p>
+      
+      <div class="calculadora">
+        <label for="nominalRosca">Diámetro Nominal de la Rosca (M en mm)</label>
+        <input type="number" id="nominalRosca" placeholder="Ej. 10 (para M10)" min="0" step="any">
+
+        <label for="pasoRosca">Paso de la rosca (mm)</label>
+        <input type="number" id="pasoRosca" placeholder="Ej. 1.5 (o usa estándar)" min="0" step="any">
+
+        <button onclick="calcularBroca()">Calcular Broca</button>
+
+        <div id="resultadoGeometria" class="resultado">
+          Introduce la medida de la rosca.
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 5. MATERIALES -->
+    <section id="materiales" class="seccion">
+      <h2>🔩 Guía de Materiales y Velocidades de Corte</h2>
+      <p style="color: #9ca3af; text-align: center;">Valores orientativos de Velocidad de Corte ($V_c$) en $m/min$ para herramientas de Acero Rápido (HSS).</p>
+      
+      <div class="calculadora" style="max-width: 700px;">
+        <table style="width: 100%; text-align: left; border-collapse: collapse;">
+          <thead>
+            <tr style="border-bottom: 2px solid #374151;">
+              <th style="padding: 10px;">Material</th>
+              <th style="padding: 10px;">Vc (HSS) m/min</th>
+              <th style="padding: 10px;">Vc (Carburo) m/min</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid #1f2937;">
+              <td style="padding: 10px;">Acero suave / Bajo carbono</td>
+              <td style="padding: 10px;">20 - 30</td>
+              <td style="padding: 10px;">100 - 180</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #1f2937;">
+              <td style="padding: 10px;">Acero aleado / Duro</td>
+              <td style="padding: 10px;">12 - 18</td>
+              <td style="padding: 10px;">60 - 100</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #1f2937;">
+              <td style="padding: 10px;">Fundición de hierro gris</td>
+              <td style="padding: 10px;">15 - 25</td>
+              <td style="padding: 10px;">80 - 130</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #1f2937;">
+              <td style="padding: 10px;">Aluminio y aleaciones</td>
+              <td style="padding: 10px;">80 - 150</td>
+              <td style="padding: 10px;">300 - 600</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px;">Latón y Bronce</td>
+              <td style="padding: 10px;">40 - 70</td>
+              <td style="padding: 10px;">150 - 300</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+
+    <!-- 6. HERRAMIENTAS -->
+    <section id="herramientas" class="seccion">
+      <h2>🛠️ Herramientas de Corte y Geometría</h2>
+      <p style="color: #9ca3af; text-align: center;">Haz clic en una categoría para consultar las 10 herramientas principales.</p>
+      
+      <div class="tarjetas">
+        <div class="tarjeta clickable" onclick="abrirModal('plaquitas')">
+          <span>🔪</span>
+          <h3>Plaquitas de Metal Duro</h3>
+          <p>Ver las 10 plaquitas ISO esenciales para torneado y fresado.</p>
+        </div>
+        <div class="tarjeta clickable" onclick="abrirModal('portaherramientas')">
+          <span>🔩</span>
+          <h3>Portaherramientas</h3>
+          <p>Ver los 10 portaherramientas y sistemas de sujeción principales.</p>
+        </div>
+        <div class="tarjeta clickable" onclick="abrirModal('medicion')">
+          <span>📏</span>
+          <h3>Instrumentos de Medición</h3>
+          <p>Ver los 10 instrumentos de control metrológico fundamentales.</p>
+        </div>
+      </div>
+    </section>
+
+<!-- VENTANA MODAL PARA MOSTRAR LAS 10 HERRAMIENTAS -->
+  <div id="modalHerramientas" class="modal">
+    <div class="modal-contenido">
+      <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
+      <h3 id="tituloModal">Título de la categoría</h3>
+      <div id="listaHerramientas" class="lista-herramientas">
+        <!-- Aquí se cargarán dinámicamente las 10 herramientas -->
+      </div>
+    </div>
+  </div>
+    
+  </main>
+
+  <footer>
+    <p>Laboratorio Virtual • © Maquinas-Herramientas 308 Navarro Juarez Carlos Andres</p>
+  </footer>
+
+<!-- VENTANA MODAL DE BIENVENIDA -->
+<div id="modalBienvenida" class="modal" style="display: flex;">
+  <div class="modal-contenido bienvenida-contenido">
+    <div class="icono-bienvenida">👋</div>
+    <h2>¡Bienvenido al Laboratorio Virtual!</h2>
+    <p id="textoPresentacion">
+      Esta página ha sido creada por <strong>Carlos Andres Navarro Juarez</strong> de la carrera de <strong>Máquinas-Herramientas</strong>, 
+      grupo <strong>308</strong> del <strong>CONALEP 057</strong>, como un pequeño proyecto para ayudar a otros estudiantes, 
+      pero principalmente fue hecho para practicar programación. 
+    </p>
+    <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 10px;">
+      Disfruta de las funciones y muchas gracias por visitar mi página.
+    </p>
+    <button onclick="cerrarBienvenida()" class="btn-bienvenida">¡Entendido, comencemos!</button>
+  </div>
+</div>
+  
+</div>
