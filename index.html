@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laboratorio Virtual MaHe 308</title>
+  <!-- ESTE ES EL ENLACE CLAVE PARA QUE CARGUE EL DISEÑO -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
 <div class="app">
 
   <header>
@@ -25,25 +36,25 @@
       </p>
 
       <div class="tarjetas">
-        <div class="tarjeta" onclick="mostrarSeccion('conversiones', document.querySelectorAll('nav button')[1])" style="cursor: pointer;">
+        <div class="tarjeta clickable" onclick="mostrarSeccion('conversiones', document.querySelectorAll('nav button')[1])">
           <span>📐</span>
           <h3>Conversiones</h3>
           <p>Convierte pulgadas a milímetros y viceversa.</p>
         </div>
 
-        <div class="tarjeta" onclick="mostrarSeccion('mecanizado', document.querySelectorAll('nav button')[2])" style="cursor: pointer;">
+        <div class="tarjeta clickable" onclick="mostrarSeccion('mecanizado', document.querySelectorAll('nav button')[2])">
           <span>⚙️</span>
           <h3>Mecanizado</h3>
           <p>Calcula parámetros de corte como las RPM.</p>
         </div>
 
-        <div class="tarjeta" onclick="mostrarSeccion('geometria', document.querySelectorAll('nav button')[3])" style="cursor: pointer;">
+        <div class="tarjeta clickable" onclick="mostrarSeccion('geometria', document.querySelectorAll('nav button')[3])">
           <span>📏</span>
           <h3>Geometría</h3>
           <p>Cálculos dimensionales y pre-taladros para roscas.</p>
         </div>
 
-        <div class="tarjeta" onclick="mostrarSeccion('materiales', document.querySelectorAll('nav button')[4])" style="cursor: pointer;">
+        <div class="tarjeta clickable" onclick="mostrarSeccion('materiales', document.querySelectorAll('nav button')[4])">
           <span>🔩</span>
           <h3>Materiales</h3>
           <p>Guía de velocidades de corte por material.</p>
@@ -110,7 +121,7 @@
       <h2>🔩 Guía de Materiales y Velocidades de Corte</h2>
       <p style="color: #9ca3af; text-align: center;">Valores orientativos de Velocidad de Corte ($V_c$) en $m/min$ para herramientas de Acero Rápido (HSS).</p>
       
-      <div class="calculadora" style="max-width: 700px;">
+      <div class="calculadora" style="max-width: 700px; overflow-x: auto;">
         <table style="width: 100%; text-align: left; border-collapse: collapse;">
           <thead>
             <tr style="border-bottom: 2px solid #374151;">
@@ -175,38 +186,41 @@
       </div>
     </section>
 
-<!-- VENTANA MODAL PARA MOSTRAR LAS 10 HERRAMIENTAS -->
+  </main>
+
+  <footer>
+    <p>Laboratorio Virtual • Proyecto educativo de Máquinas-Herramientas</p>
+  </footer>
+
+  <!-- VENTANA MODAL DE BIENVENIDA -->
+  <div id="modalBienvenida" class="modal" style="display: flex;">
+    <div class="modal-contenido bienvenida-contenido">
+      <div class="icono-bienvenida">👋</div>
+      <h2>¡Bienvenido al Laboratorio Virtual!</h2>
+      <p id="textoPresentacion">
+        Esta página ha sido creada por un estudiante de la carrera de <strong>Máquinas-Herramientas</strong>, 
+        grupo <strong>308</strong> del <strong>CONALEP</strong>, como un pequeño proyecto para ayudar a otros estudiantes, 
+        pero principalmente fue hecho para practicar programación. 
+      </p>
+      <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 10px;">
+        Disfruta de las funciones y muchas gracias por visitar mi página.
+      </p>
+      <button onclick="cerrarBienvenida()" class="btn-bienvenida">¡Entendido, comencemos!</button>
+    </div>
+  </div>
+
+  <!-- VENTANA MODAL PARA LAS HERRAMIENTAS -->
   <div id="modalHerramientas" class="modal">
     <div class="modal-contenido">
       <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
       <h3 id="tituloModal">Título de la categoría</h3>
-      <div id="listaHerramientas" class="lista-herramientas">
-        <!-- Aquí se cargarán dinámicamente las 10 herramientas -->
-      </div>
+      <div id="listaHerramientas" class="lista-herramientas"></div>
     </div>
   </div>
-    
-  </main>
 
-  <footer>
-    <p>Laboratorio Virtual • © Maquinas-Herramientas 308 Navarro Juarez Carlos Andres</p>
-  </footer>
+</div>
 
-<!-- VENTANA MODAL DE BIENVENIDA -->
-<div id="modalBienvenida" class="modal" style="display: flex;">
-  <div class="modal-contenido bienvenida-contenido">
-    <div class="icono-bienvenida">👋</div>
-    <h2>¡Bienvenido al Laboratorio Virtual!</h2>
-    <p id="textoPresentacion">
-      Esta página ha sido creada por <strong>Carlos Andres Navarro Juarez</strong> de la carrera de <strong>Máquinas-Herramientas</strong>, 
-      grupo <strong>308</strong> del <strong>CONALEP 057</strong>, como un pequeño proyecto para ayudar a otros estudiantes, 
-      pero principalmente fue hecho para practicar programación. 
-    </p>
-    <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 10px;">
-      Disfruta de las funciones y muchas gracias por visitar mi página.
-    </p>
-    <button onclick="cerrarBienvenida()" class="btn-bienvenida">¡Entendido, comencemos!</button>
-  </div>
-</div>
-  
-</div>
+<!-- ENLACE AL SCRIPT DE JAVASCRIPT AL FINAL -->
+<script src="script.js"></script>
+</body>
+</html>
